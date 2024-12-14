@@ -12,6 +12,7 @@ import org.testng.annotations.BeforeTest;
 import org.testng.annotations.Test;
 import java.util.concurrent.TimeUnit;
 import org.openqa.selenium.JavascriptExecutor;
+import org.openqa.selenium.support.ui.ExpectedConditions;
 import org.openqa.selenium.support.ui.Select;
 import org.openqa.selenium.support.ui.WebDriverWait;
 import java.time.Duration;
@@ -82,6 +83,8 @@ public class TestCases {
         dropDown.click();
         Thread.sleep(2000);
         WebElement missButton = driver.findElement(By.xpath("(//span[text()='Ms'])[2]"));
+        WebDriverWait wait = new WebDriverWait(driver, Duration.ofSeconds(30));
+        wait.until(ExpectedConditions.elementToBeClickable(missButton)); 
         missButton.click();
         Thread.sleep(2000);
     }
@@ -135,6 +138,7 @@ public class TestCases {
         driver.manage().window().maximize();
         driver.manage().timeouts().implicitlyWait(Duration.ofSeconds(30));
     }
+        
 
     @AfterTest
     public void endTest(){
